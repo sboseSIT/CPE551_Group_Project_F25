@@ -1,3 +1,7 @@
+''''''''''''''''
+Written by Suraj Bose & Nicole Giardino for 12/17/2025 submission for AAI/CPE/EE 551 WS/WS1 Final Group Project
+This class file contains the BuildingCalc class that performs calculations on building data.
+'''''''''''''''
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,7 +45,7 @@ class BuildingCalc:
         #Process details:
         #Select all rows which fulfill the filter requirements
         # Use filter + lambda to select matching rows
-        # Source: Week 14 – Built-in functions (filter, lambda)
+        # See Week 14 – filter, lambda
         filtered = pd.DataFrame(
             #Filter is an example of a built in module/functionality
             filter(

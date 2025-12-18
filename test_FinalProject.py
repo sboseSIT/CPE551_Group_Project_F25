@@ -1,3 +1,7 @@
+''''''''''''''''
+Written by Suraj Bose & Nicole Giardino for 12/17/2025 submission for AAI/CPE/EE 551 WS/WS1 Final Group Project
+This test file contains pytests for the Building and BuildingCalc classes.
+'''''''''''''''
 import pytest # three pytest trials are seen below
 import pandas as pd
 

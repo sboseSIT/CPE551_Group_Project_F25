@@ -1,3 +1,7 @@
+''''''''''''''''
+Written by Suraj Bose & Nicole Giardino for 12/17/2025 submission for AAI/CPE/EE 551 WS/WS1 Final Group Project
+This class file contains the Building class that stores building data.
+'''''''''''''''
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
