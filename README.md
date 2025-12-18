@@ -12,6 +12,7 @@ Nicole Giardino - ngiardin@stevens.edu
   A dataset (csv) is provided which consists of 7,200 records with detailed hourly (00:00 to 23:00) observations related to building energy consumption as temperature, humidity, building type, and occupancy changes. These observations are tied to 20 buildings with differing IDs, B001-B020, and the study was conducted for two full weeks. The team sets out to develop a python program capable of predicting the energy consumption of buildings under different conditions.
 
 **Program Structure:**
+There are a total of four files, which include 1 .ipynb file (Final_Project) for the main running function. There are three .py files, two of which form the classes needed for the main function (buildingCalcClass, buildingClass), and one which includes two PyTests (test_FinalProject.py). These files are utilized in conjunction with one another to achieve the goal of the project statement using the methods described below.
 
   The first class that is defined and used is Building, which sets up the entire dataset using PANDAS. It stores lists of all the data for future use in the system. The next class, BuildingCalc, has a composition relationship with Building and calculates estimates for the data that can be acquired from the group's dataset: energy, temperature, and humidity. Here, time of day and temperature in Fahrenheit columns are made. A filter is created in this class for building type, occupancy level, and time period. This filter returns the values needed from the dataset, including the average, minimum, and maximum of the three values defined previously. A generator function is also defined to show the user rows that match their input criteria for building type, occupancy level, and time of day.
   
@@ -22,6 +23,7 @@ Nicole Giardino - ngiardin@stevens.edu
   There is also a provided Pytest file. By running this file, users can gain an understanding of which data types this program accepts and which it does not. The first test checks whether a given time frame correctly matches a corresponding TimeOfDay, and this test passes when using fake_data and the predefined test timestamps. The next two tests attempt to validate the data files, "fake_data" and "fail_fake_data" against the expected numeric_columns. The first of these tests passes, while the second does not, as "fail_fake_data" includes data containing string values, which is not the correct data type for this program.
 
 **How to Use:**
+After downloading the Github as a .zip file, please unzip to the directory of your choice. Ensure that the necessary libraries are all installed. These include pandas, numpy, matplotlib, and pytest. These can be installed using pip install for windows. Double check that the .csv file is in the same location as the python scripts and jupyter file.
 
   The main code file that will be used for this project is labeled as "Bose_Giardino_FinalProject". Upon hitting the run button, the user is prompted with the message: "Enter 'ALL' to see dataset stats ('X' or 'x' to exit)". Typing 'ALL' will display the total records for the dataset (7200 in this case) as well as the average energy use, temperature, and humidity across all data points. Once 'X' is entered, the user is provided with a test that demonstrates the functionality of the code. This test shows the first few rows of the DataFrame, with the added columns TimeOfDay and Temperature (F). Then, a test function is displayed showing the average energy, temperature, and humidity for the pre-defined test parameters: Industrial for Building, High for Occupancy, and afternoon for Time of Day.
   
@@ -34,13 +36,19 @@ Nicole Giardino - ngiardin@stevens.edu
 **Contributions of Each TeamMate:**
 
 **Suraj:**
-- Created the class - buildingCalc. Contains constructors, attributes. 
+- Built the BuildingCalc Class which contains __init__ as a constructor, attributes like self.df/self.building, a method to categorize timestamps, an estimate method to filter data, and a generator method.
 - Function under buildingCalc to calculate estimates
-- Exceptions: ValueError if invalid building selected inside the while loop. ValueError if no data is available after applying the filters.
-- Pytest: Created three tests: 1 checks the timeframe based on timeofday. The other two check if the data columns of temp, humidity, and energy usage are all numbers
+- Created catching of exceptions:
+    - ValueError if an invalid building is selected inside the while loop.
+    - ValueError if no data is available after applying the filters.
+- Wrote the .py file for the Pytest with three tests, two unique:
+    - Cheeck the timeframe based on timeofday to see if morning, afternoon, etc are assigned correctly
+    - Other two check if the data columns of temp, humidity, and energy usage are all numbers. One passes the test, the other does not.
 - I/O reading from file/database: Data is loaded to df using Pandas
-- Special funtions: Updated filter function (boolean indexing) to use filter() and lambda instead
-- Mutable/unmutable objects: Pandas Dataframe & buildings dictionary are mutable. Strings & Tuples are immutable. Added tuple for TIMEOFDAY
+- Modified the filter function to use filter() and lambda (special functions)
+- Ensured that there are two mutable and two immutable types of objects:
+    - Pandas Dataframe & buildings dictionary are mutable.
+    - Strings & Tuples (created TIMEOFDAY tuple) are immutable.
 - Added in operator overloading with len() inside the Building Class.
 - Generator function row_check in buildingcalc class
 
