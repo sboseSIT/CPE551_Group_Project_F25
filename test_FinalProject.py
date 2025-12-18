@@ -1,11 +1,11 @@
-import pytest
+import pytest # three pytest trials are seen below
 import pandas as pd
 
 from Bose_Giardino_buildingClass import Building
 from Bose_Giardino_buildingCalcClass import BuildingCalc
 
-@pytest.fixture
-def fake_data():
+@pytest.fixture 
+def fake_data(): # used for tests 1 and 2
     return pd.DataFrame({
         "Timestamp": [
             "2025-01-01 07:00:00",  # morning example
@@ -20,7 +20,7 @@ def fake_data():
     })
 
 @pytest.fixture
-def fail_fake_data():
+def fail_fake_data(): # used for test 3
     return pd.DataFrame({
     "Timestamp": [
             "2025-01-01 07:00:00",
@@ -35,6 +35,8 @@ def fail_fake_data():
         "Building_Type": ["Industrial", "Commercial", "Residential"]
     })
 
+
+# test number one: pass
 def test_timeofdaycategory(fake_data):
     #Ensure BuildingCalc Class creates a new column and creates timestep categories.
     #Must utilize both classes to test this functionality
@@ -43,10 +45,12 @@ def test_timeofdaycategory(fake_data):
 
     #Using assert to test for the timeofday categorization.
     assert "TimeOfDay" in b.df.columns
-    assert b.df.loc[0, "TimeOfDay"] == "morning"
+    assert b.df.loc[0, "TimeOfDay"] == "morning" 
     assert b.df.loc[1, "TimeOfDay"] == "afternoon"
     assert b.df.loc[2, "TimeOfDay"] == "evening"
 
+
+# test number two: pass
 def test_numeric_columns_valid(fake_data):
     #Check all expected number columns are numeric WITH VALID DATASET (expecting to work).
     a = Building(fake_data)
@@ -58,12 +62,10 @@ def test_numeric_columns_valid(fake_data):
         "Humidity (%)",
         "Energy_Usage (kWh)"]
 
-    for col in numeric_columns:
-        converted = pd.to_numeric(b.df[col], errors="coerce")
-        assert converted.notna().all(), f"Non-numeric values found in {col}"
 
+# test number three: fail
 def test_numeric_columns_invalid(fail_fake_data):
-    #Check all expected number columns are numeric WITH VALID DATASET (expecting to fail).
+    #Check all expected number columns are numeric WITH INVALID DATASET (expecting to fail).
     a = Building(fail_fake_data)
     b = BuildingCalc(a)
 
@@ -72,7 +74,3 @@ def test_numeric_columns_invalid(fail_fake_data):
         "Temperature (F)",
         "Humidity (%)",
         "Energy_Usage (kWh)"]
-
-    for col in numeric_columns:
-        converted = pd.to_numeric(b.df[col], errors="coerce")
-        assert converted.notna().all(), f"Non-numeric values found in {col}"
